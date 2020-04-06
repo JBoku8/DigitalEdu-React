@@ -3,7 +3,7 @@
 const helperFunctions = {
   getFullName() {
     return `User - ${this.firstName} ${this.lastName}`;
-  }
+  },
 };
 
 function User(firstName, lastName, isAdmin, age) {
@@ -14,7 +14,7 @@ function User(firstName, lastName, isAdmin, age) {
     age,
     hi() {
       console.log('HI....');
-    }
+    },
   };
   //   tempUser = Object.assign(tempUser, helperFunctions);
   tempUser.__proto__ = helperFunctions;
@@ -27,11 +27,11 @@ function Person(firstName, lastName, isAdmin, age) {
   this.isAdmin = isAdmin;
   this.age = age;
 }
-Person.prototype.getFullName = function() {
+Person.prototype.getFullName = function () {
   return `User - ${this.firstName} ${this.lastName}`;
 };
 
-Person.prototype.getAge = function() {
+Person.prototype.getAge = function () {
   return `I'm ${this.age} years old ...`;
 };
 
