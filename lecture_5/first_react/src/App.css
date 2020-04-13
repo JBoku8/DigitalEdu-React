@@ -1,0 +1,20 @@
+.App {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: seagreen;
+  font-size: 3em;
+}
+
+.description {
+  color: brown;
+  font-size: 2em;
+}
+
+.content__img {
+  width: 500px;
+}
