@@ -16,6 +16,7 @@ function App() {
       stateObject[key] = {
         count: 0,
         limit: Math.round(Math.random() * 20),
+        price: Math.round(Math.random() * 10000),
       };
     });
     setTimeout(() => {

@@ -18,6 +18,7 @@ function Content({ colorClicks, setColorClicks }) {
         [type]: {
           count: colorClicks[type].count + 1,
           limit: colorClicks[type].limit - 1,
+          price: colorClicks[type].price,
         },
       });
     }
@@ -36,9 +37,9 @@ function Content({ colorClicks, setColorClicks }) {
             >
               <CustomAlert
                 type={alertType}
-                message={`This is a alert ${alertType} ${JSON.stringify(
-                  colorClicks[alertType]
-                )}`}
+                message={`Price - ${
+                  colorClicks[alertType].price
+                }, ${alertType} ${JSON.stringify(colorClicks[alertType])}`}
               />
               <CustomButton
                 type={alertType}
