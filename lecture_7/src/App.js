@@ -9,6 +9,10 @@ import './App.css';
 
 function App() {
   const [colorClicks, setColorClicks] = useState(null);
+  const [cart, setCart] = useState({
+    totalPrice: 0,
+    totalCount: 0,
+  });
 
   useEffect(() => {
     const stateObject = {};
@@ -19,19 +23,52 @@ function App() {
         price: Math.round(Math.random() * 10000),
       };
     });
-    setTimeout(() => {
-      setColorClicks(stateObject);
-    }, 2000);
+    // setTimeout(() => {
+    setColorClicks(stateObject);
+    // }, 2000);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(colorClicks);
-  // }, [colorClicks]);
+  useEffect(() => {
+    let totalCount = 0;
+    let totalPrice = 0;
+
+    // for (const key in colorClicks) {
+    //   totalCount += colorClicks[key].count;
+    //   totalPrice += colorClicks[key].price * colorClicks[key].count;
+    // }
+
+    // if (colorClicks) {
+    //   for (const value of Object.values(colorClicks)) {
+    //     totalCount += value.count;
+    //     totalPrice += value.price * value.count;
+    //   }
+    // }
+
+    if (colorClicks) {
+      for (const [, value] of Object.entries(colorClicks)) {
+        totalCount += value.count;
+        totalPrice += value.price * value.count;
+      }
+    }
+
+    setCart({
+      totalCount,
+      totalPrice,
+    });
+  }, [colorClicks]);
 
   return (
     <Container className="p-6">
       <Header colorClicks={colorClicks} />
-      <Content colorClicks={colorClicks} setColorClicks={setColorClicks} />
+      <div className="row p-4 m-3">
+        <pre>{JSON.stringify(cart, null, 2)}</pre>
+      </div>
+      <Content
+        colorClicks={colorClicks}
+        setColorClicks={setColorClicks}
+        // cart={cart}
+        // setCart={setCart}
+      />
     </Container>
   );
 }

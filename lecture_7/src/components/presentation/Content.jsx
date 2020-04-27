@@ -58,7 +58,9 @@ function Content({ colorClicks, setColorClicks }) {
 
 Content.propTypes = {
   colorClicks: PropTypes.object,
+  // cart: PropTypes.object,
   setColorClicks: PropTypes.func.isRequired,
+  // setCart: PropTypes.func.isRequired,
 };
 
 export default Content;
