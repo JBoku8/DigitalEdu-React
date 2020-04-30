@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import CountryCard from '../Card/CountryCard';
+import CountryDetail from '../Countries/Country/Detail';
 import Spinner from '../Spinner';
 
-import { API_BASE_URL } from '../../conf.dev';
+import { API_COUNTRIES_URL } from '../../conf.dev';
 
 function Countries(props) {
-  const { apiPath } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [countries, setCountries] = useState([]);
+  // console.log('[Countries.jsx] props', props);
+
+  const { path } = props.match;
 
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}${apiPath}`)
+      .get(API_COUNTRIES_URL)
       .then((response) => {
-        setCountries(response.data);
+        const filtered = response.data.filter((item) => {
+          return item.Country.startsWith('B');
+        });
+        setCountries(filtered);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -32,13 +39,19 @@ function Countries(props) {
   return (
     <div className="row row-cols-12 m-3 flex-column">
       {isLoading ? <Spinner /> : null}
-      <div className="w-100 row row-cols-12">{countryCards}</div>
+
+      <Route
+        path={path}
+        exact
+        render={() => {
+          return <div className="w-100 row row-cols-12">{countryCards}</div>;
+        }}
+      />
+      <Route path={`${path}/:country`} component={CountryDetail} />
     </div>
   );
 }
 
-Countries.propTypes = {
-  apiPath: PropTypes.string.isRequired,
-};
+Countries.propTypes = {};
 
 export default Countries;

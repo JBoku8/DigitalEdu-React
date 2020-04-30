@@ -7,7 +7,6 @@ import Spinner from '../Spinner';
 import { API_BASE_URL } from '../../conf.dev';
 
 function AllRoutes(props) {
-  const { setAPIPath } = props;
   const [allRoutes, setAllRoutes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,15 +27,7 @@ function AllRoutes(props) {
   let RouteCards = null;
   if (!isLoading && allRoutes.length) {
     RouteCards = allRoutes.map((route) => {
-      return (
-        <RouteCard
-          key={route.Path}
-          route={route}
-          onPathSelect={() => {
-            setAPIPath(route.Path);
-          }}
-        />
-      );
+      return <RouteCard key={route.Path} route={route} />;
     });
   }
 
@@ -48,8 +39,7 @@ function AllRoutes(props) {
   );
 }
 
-AllRoutes.propTypes = {
-  setAPIPath: PropTypes.func.isRequired,
-};
+// AllRoutes.propTypes = {
+// };
 
 export default AllRoutes;

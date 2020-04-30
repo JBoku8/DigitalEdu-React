@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function CountryCard({ country }) {
   return (
@@ -8,7 +9,14 @@ function CountryCard({ country }) {
     >
       <div className="card-header">{country.Country}</div>
       <div className="card-body">
-        <h5 className="card-title">ISO2 - {country.ISO2}</h5>
+        <h5 className="card-title">
+          <Link
+            to={`/countries/${country.Slug}`}
+            className="text-white text-decoration-none"
+          >
+            Get List Of Cases
+          </Link>
+        </h5>
       </div>
     </div>
   );

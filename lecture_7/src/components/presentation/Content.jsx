@@ -9,15 +9,25 @@ import types from '../../types';
 
 function Content({ colorClicks, setColorClicks }) {
   const handleButtonClick = (type) => {
-    // console.log('[Content.jsx], Button Type is', type);
-    // console.log('Click Count', colorClicks[type]);
-    // console.log({ ...colorClicks, [type]: colorClicks[type] + 1 });
     if (colorClicks[type].limit > 0) {
       setColorClicks({
         ...colorClicks,
         [type]: {
           count: colorClicks[type].count + 1,
           limit: colorClicks[type].limit - 1,
+          price: colorClicks[type].price,
+        },
+      });
+    }
+  };
+
+  const handleButtonClickMinus = (type) => {
+    if (colorClicks[type].limit > 0) {
+      setColorClicks({
+        ...colorClicks,
+        [type]: {
+          count: colorClicks[type].count - 1,
+          limit: colorClicks[type].limit + 1,
           price: colorClicks[type].price,
         },
       });
@@ -43,10 +53,18 @@ function Content({ colorClicks, setColorClicks }) {
               />
               <CustomButton
                 type={alertType}
-                text={alertType}
+                text={`${alertType} + `}
                 disabled={colorClicks[alertType].limit === 0}
                 onClick={(event) => {
                   handleButtonClick(alertType);
+                }}
+              />
+              <CustomButton
+                type={alertType}
+                text={`${alertType} - `}
+                disabled={colorClicks[alertType].limit === 0}
+                onClick={(event) => {
+                  handleButtonClickMinus(alertType);
                 }}
               />
             </Row>

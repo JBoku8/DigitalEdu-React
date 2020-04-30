@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 import { API_BASE_URL } from '../../conf.dev';
 
-function RouteCard({ route, onPathSelect }) {
+function RouteCard({ route }) {
   const handleClick = (event) => {
     event.preventDefault();
-    onPathSelect();
   };
 
   if (!route) return null;
@@ -37,7 +36,6 @@ RouteCard.defaultProps = {
 
 RouteCard.propTypes = {
   route: PropTypes.object.isRequired,
-  onPathSelect: PropTypes.func.isRequired,
 };
 
 export default RouteCard;
