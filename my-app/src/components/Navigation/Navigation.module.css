@@ -1,0 +1,16 @@
+.Menu {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+  background-color: #ccc;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.Item {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
